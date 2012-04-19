@@ -1,4 +1,6 @@
 Project3::Application.routes.draw do
+  get "sessions/new"
+
   get "pages/help"
 
   get "pages/search"
