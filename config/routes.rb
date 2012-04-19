@@ -1,4 +1,24 @@
 Project3::Application.routes.draw do
+  get "pages/help"
+
+  get "pages/search"
+
+  get "bookmarks/edit"
+
+  get "bookmarks/index"
+
+  get "bookmarks/new"
+
+  get "bookmarks/show"
+
+  get "users/edit"
+
+  get "users/index"
+
+  get "users/new"
+
+  get "users/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
