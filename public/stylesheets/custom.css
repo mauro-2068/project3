@@ -8,7 +8,7 @@ header img	 {padding: 1em; background: #fff;
 		  width :700px; height :100px;
 }
 
-section   	 {margin-top: 1em; font-size: 120%;
+section   	 {margin-top: .5em; font-size: 120%;
 		   padding: 20px;   background: #fff;
 }
 
@@ -65,12 +65,12 @@ table.profile {
 }
 
 td.main {
-  width: 70%;
+  width: 60%;
   padding: 1em;
 }
 
 td.sidebar {
-  width: 30%;
+  width: 40%;
   padding: 1em;
   vertical-align: top;
   background: #ffc;

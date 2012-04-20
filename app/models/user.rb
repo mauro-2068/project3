@@ -19,7 +19,10 @@ class User < ActiveRecord::Base
       attr_accessor :password
   attr_accessible :username, :realname, :email, :password , :password_confirmation
   
-    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    
+ # email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i #should work but it is failing in the begining and ending of the expression \A.....\z
+   email_regex = /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+/i
+
  
     validates :username, :presence => true, :uniqueness => true,
                                             :length => {:maximum => 100}

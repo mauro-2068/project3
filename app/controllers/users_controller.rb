@@ -7,11 +7,13 @@ class UsersController < ApplicationController
     @title = "All users"
     @users  =  User.paginate(:page => params[:page])
   end
+  ###
 
   def show
     @user  = User.find(params[:id])
     @title = @user.username 
   end
+  ###
   def new
     @title = "Sign up"
     @user = User.new
@@ -30,7 +32,7 @@ class UsersController < ApplicationController
   ###
   def edit
    ## raise request.inspect
-    #@user  = User.find(params[:id])
+    @user  = User.find(params[:id])
     @title = "Edit user"
   end
   ###
@@ -47,7 +49,6 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     redirect_to users_path, :flash => {:success => "User destroyed."}
-    
   end
   private
     def authenticate
