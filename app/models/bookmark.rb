@@ -1,6 +1,6 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :user
-  belongs_to :User
+
      attr_accessible :url, :name
     
     validates :url, :presence => true,
@@ -10,3 +10,17 @@ class Bookmark < ActiveRecord::Base
                      :length => {:maximum => 100}
     
 end
+
+
+# == Schema Information
+#
+# Table name: bookmarks
+#
+#  id         :integer         not null, primary key
+#  url        :string(255)
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#
+

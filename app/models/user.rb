@@ -23,3 +23,20 @@ class User < ActiveRecord::Base
                       
 
 end
+
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer         not null, primary key
+#  username           :string(255)
+#  realname           :string(255)
+#  email              :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  salt               :string(255)
+#  admin              :boolean
+#  encrypted_password :string(255)
+#
+
