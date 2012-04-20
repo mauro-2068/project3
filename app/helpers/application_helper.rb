@@ -11,6 +11,6 @@ module ApplicationHelper
 	end
 
 	def logo
-	  image_tag("book_logo.jpg", :alt => "Bookmarks Logo", :class => "round")    
+	  image_tag("book_logo.jpg", :alt => "Bookmarks Logo", :class => "round", :id => "logo")    
 	end
 end
