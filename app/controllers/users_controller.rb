@@ -15,8 +15,11 @@ class UsersController < ApplicationController
   end
   ###
   def new
-    @title = "Sign up"
-    @user = User.new
+    #if @user?
+    #  format.html {render :action => "destroy" }
+    #else
+      @title = "Sign up"
+      @user = User.new
   end
   ###
   def create
