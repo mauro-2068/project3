@@ -9,14 +9,7 @@ class PagesController < ApplicationController
   def new
     @user = User.new
   end
-  def show
-    
-    @user  = User.find(params[:id])
-     @title = @user.username
-    @bookmarks = @user.bookmarks.paginate(:page => params[:page])
-   
- 
-  end
+  
   def search
     @title = "Search"
   end
