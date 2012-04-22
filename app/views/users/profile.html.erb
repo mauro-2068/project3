@@ -1,21 +1,7 @@
-<table class='profile' summary='Profile Information'>
+<table class='profile' summary='Profdile Information'>
   <tr>
-    <td class ='main'>
-      <h1><%= gravatar_for @user %> <%= @user.username %></h1>
-      <% if @user.bookmarks.any? %>
-          <table class="bookmarks" summary="User Bookmarks">
-             <%= render @bookmarks %>
-            
-          </table>
-          <%= will_paginate @bookmarks %>
-        <% end %>
-    
-    </td>
-    <td class='sidebar round'>
-      <strong>User name</strong> <%= @user.username %> <br />
-      <strong>Email</strong>     <%= @user.email %> <br />
-      <strong>URL </strong> <%= link_to user_path(@user), @user %>
-    </td>
+    <td class ='main'>Hello world</td>
+   
   </tr>
 </table>
 

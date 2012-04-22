@@ -6,6 +6,17 @@ class PagesController < ApplicationController
 	  @feed_items = current_user.feed.paginate(:page => params[:page])
       end
   end
+  def new
+    @user = User.new
+  end
+  def show
+    
+    @user  = User.find(params[:id])
+     @title = @user.username
+    @bookmarks = @user.bookmarks.paginate(:page => params[:page])
+   
+ 
+  end
   def search
     @title = "Search"
   end
