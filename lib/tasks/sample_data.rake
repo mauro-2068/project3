@@ -5,13 +5,14 @@ namespace :db do
     task :populate => :environment do
         Rake::Task['db:reset'].invoke
         admin = User.create!(:username => "Example User",
-                             :realname => "Gino Garcia"
+                             :realname => "Gino Garcia",
                              :email => "ginogarica@netzero.net",
                              :password => "foobars",
                              :password_confirmation => "foobars")
         admin.toggle!(:admin)    
         99.times do |n|
-            name = Faker::Name.name
+            username = Faker::Name.name
+            realname = Faker::Name.name
             email = "example-#{n+1}@railstutorial.org"
             password = "password"
             User.create!(:username => username,

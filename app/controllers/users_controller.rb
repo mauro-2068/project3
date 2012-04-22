@@ -10,14 +10,28 @@ class UsersController < ApplicationController
   ###
 
   def show
-    @user  = User.find(params[:id])
-    @title = @user.username 
+   
+     @user  = User.find(params[:id])
+      @title = @user.username
+     
+     if signed_in?
+          @bookmarks = @user.bookmarks.paginate(:page => params[:page])
+	  @bookmark = Bookmark.new
+	  @feed_items = current_user.feed.paginate(:page => params[:page])
+      end
   end
+  
+  def profile
+   
+    @user  = User.find(params[:id])
+     @title = @user.username
+    @bookmarks = @user.bookmarks.paginate(:page => params[:page])
+   
+  end
+  #
+  #
   ###
   def new
-    #if @user?
-    #  format.html {render :action => "destroy" }
-    #else
       @title = "Sign up"
       @user = User.new
   end
@@ -25,7 +39,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to the  Sample App!"
+      flash[:success] = "Welcome to the  Bookmarks App!"
       redirect_to @user
     else
       @title = "Sign up"
@@ -35,7 +49,7 @@ class UsersController < ApplicationController
   ###
   def edit
    ## raise request.inspect
-    @user  = User.find(params[:id])
+   # @user  = User.find(params[:id])
     @title = "Edit user"
   end
   ###
@@ -50,21 +64,22 @@ class UsersController < ApplicationController
   end
   ###
   def destroy
-    User.find(params[:id]).destroy
-    redirect_to users_path, :flash => {:success => "User destroyed."}
+    #User.find(params[:id]).destroy
+    @user.destroy
+    redirect_to root_path, :flash => {:success => "User destroyed."}
+    #redirect_to users_path, :flash => {:success => "User destroyed."}
+
   end
   private
-    def authenticate
-        deny_access unless signed_in?
-    end
-    ###
+   
     def correct_user
-      @user =User.find(params[:id])
+      @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
     ###
     def admin_user
-        user = User.find(params[:id])
+        #user = User.find(params[:id])
+        @user = User.find(params[:id])
         redirect_to(root_path) unless (!current_user.admin?  || current_user?(user))
     end
     

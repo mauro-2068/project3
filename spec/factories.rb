@@ -7,11 +7,18 @@ Factory.define :user do |user|
 end
 
 
-Factory.sequence :name do |n|
+Factory.sequence :username do |n|
   "person#{n}"
 end
 Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
+
+Factory.define :bookmark do |bookmark|
+  bookmark.url "http://flordelpalenque.com"
+  bookmark.name "Flor Del Palenque"
+  bookmark.association :user
+end
+
 
 

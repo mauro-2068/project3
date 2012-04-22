@@ -176,7 +176,7 @@ describe User do
       end
     end
   ###
-  describe "admin attribute" do
+    describe "admin attribute" do
         #
         before(:each) do
             @user = User.create!(@attr)
@@ -196,4 +196,49 @@ describe User do
           @user.should be_admin
         end
     end
+    ###
+    describe "bookmarks associations" do
+        #
+        before(:each) do
+            @user = User.create(@attr)
+            @mp1 = Factory(:bookmark, :user => @user, :created_at => 2.day.ago)
+            @mp2 = Factory(:bookmark, :user => @user, :created_at => 1.hour.ago)
+        end
+        it "should have a bookmarks attribute" do
+            @user.should respond_to(:bookmarks)
+        end
+        ###
+        it "should have the right bookmarks in the right order" do
+          @user.bookmarks.should == [@mp2, @mp1]
+        end
+        ###
+        it "shoudl destroy associated bookmark" do
+            @user.destroy
+            [@mp1, @mp2].each do |bookmark|
+               lambda do
+                  Bookmark.find(bookmark)
+               end.should raise_error(ActiveRecord::RecordNotFound)
+            end
+        end
+        ###
+        describe "status feed" do
+          #
+          it "should have a feed" do
+              @user.should respond_to(:feed)
+          end
+          ###
+          it "should include the user's bookmarks" do
+              @user.feed.should include(@mp1)
+              @user.feed.should include(@mp2)
+          end
+          ###
+          it "should not include a different user's bookmarks" do
+            mp3 = Factory(:bookmark, :user => Factory(:user, :email => Factory.next(:email)))
+            @user.feed.should_not include(mp3)
+          end
+        end
+    end
+  
+  
+  
 end

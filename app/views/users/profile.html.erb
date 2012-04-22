@@ -1,10 +1,9 @@
 <table class='profile' summary='Profile Information'>
   <tr>
     <td class ='main'>
-      
+      <h1><%= gravatar_for @user %> <%= @user.username %></h1>
       <% if @user.bookmarks.any? %>
           <table class="bookmarks" summary="User Bookmarks">
-            <h2 id='h2_header'>My Bookmarks</h2>
              <%= render @bookmarks %>
             
           </table>
@@ -13,9 +12,8 @@
     
     </td>
     <td class='sidebar round'>
-      <%= gravatar_for @user, :size => 30 %>
-      <strong> <%= @user.username %> </strong><br />
-      <strong>Email</strong> <%= @user.email %> <br />
+      <strong>User name</strong> <%= @user.username %> <br />
+      <strong>Email</strong>     <%= @user.email %> <br />
       <strong>URL </strong> <%= link_to user_path(@user), @user %>
     </td>
   </tr>

@@ -1,5 +1,4 @@
 module SessionsHelper
-
   
   def sign_in(user)
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
@@ -27,6 +26,11 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+    ###
+    def authenticate
+        deny_access unless signed_in?
+    end
+    ###
   
     def deny_access
       store_location

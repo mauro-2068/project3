@@ -1,60 +1,40 @@
 class BookmarksController < ApplicationController
+    before_filter :authenticate
+    before_filter :authorized_user, :only => :destroy
    
     # GET /bookmarks
-    # GET /bookmarks.json
     def index
         @bookmarks = Bookmark.all
-            respond_to do |format|
-            format.html # index.html.erb
-            format.json { render json: @bookmark }
-         end
-     end
-  
-
+    end
+    ###
     #GET /bookmarks/1
-    #GET /bookmarks/1.json
     def show
         @bookmark = Bookmark.find(params[:id])
-
-        respond_to do |format|
-            format.html #show.html.erb
-            format.json {render json: @bookmark}
-        end
     end
-
+    ###
     #GET /bookmarks/new
-    #GET /bookmarks/new.json
     def new
         @bookmark = Bookmark.new
         @title = "New Bookmark"
-        respond_to do |format|
-            format.html #new.html.erb
-            format.json{ render json: @bookmark}
-        end
     end
-
+    ####
     # GET /bookmarks/1/edit
     def edit
         @bookmark = Bookmark.find(params[:id])
     end
-
+    ####
     # POST /bookmarks
-    # POST /bookmarks.json
-    def create
-        @bookmark = Bookmark.new(params[:bookmark])
-        respond_to do |format|
-            if @bookmark.save
-                format.html { redirect_to @bookmark, notice: 'Bookmard was successfully created.' }
-                format.json { render json: @bookmark, status: :created, location: @bookmark }
-            else
-                format.html { render action: "new" }
-                format.json { render json: @bookmark.errors, status: :unprocessable_entity }
-            end
+     def create
+        @bookmark = current_user.bookmars.build(params[:bookmark])
+        if @bookmark.save
+            redirect_to root_path, :flash => {:success => "Bookmark created!"}
+        else
+            @feed_items = []
+            render 'users/show'
         end
     end
     
     # PUT /bookmark/1
-    # PUT /bookmarks/1.json
     def update
         @bookmark = Bookmark.find(params[:id])
         respond_to do |format|
@@ -67,16 +47,16 @@ class BookmarksController < ApplicationController
             end
         end
     end
-
-  # DELETE /bookmarks/1
-  # DELETE /bookmarks/1.json
-  def destroy
-    @bookmark = Bookmark.find(params[:id])
-    @bookmark.destroy
-
-    respond_to do |format|
-      format.html { redirect_to bookmarks_url }
-      format.json { head :ok }
+    ###
+    # DELETE /bookmarks/1
+    def destroy
+         @bookmark.destroy
+        redirect_to current_user, :flash => {:success => "Bookmark deleted!"}
     end
-  end
+    ####
+    private
+        def authorized_user
+            @bookmark = Bookmark.find(params[:id])
+            redirect_to root_path unless current_user?(@bookmark.user)
+        end
 end

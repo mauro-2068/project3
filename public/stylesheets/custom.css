@@ -65,12 +65,12 @@ table.profile {
 }
 
 td.main {
-  width: 60%;
+  width: 65%;
   padding: 1em;
 }
 
 td.sidebar {
-  width: 40%;
+  width: 35%;
   padding: 1em;
   vertical-align: top;
   background: #ffc;
@@ -129,6 +129,9 @@ div.field, div.actions {margin-bottom :10px}
 ul.users	{margin-top :1em; }
 ul.users li	{list-style :none; }
 
-
-/* Flash */
+.sidebar img.gravatar {margin: .5px;
+			
+}
+#h2_header	{text-align:center; font-style:	italic;
+		color: darkblue;}
 

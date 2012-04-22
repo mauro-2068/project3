@@ -10,14 +10,16 @@
 #  user_id    :integer
 #
 class Bookmark < ActiveRecord::Base
-  belongs_to :user
-
-     attr_accessible :url, :name
+    
+    attr_accessible :url, :name, :user_id
+    belongs_to :user
     
     validates :url, :presence => true,
                      :length => {:minimum => 10}
     
     validates :name, :presence => true,
                      :length => {:maximum => 100}
+                     
+    default_scope :order => "bookmarks.created_at DESC"
     
 end
