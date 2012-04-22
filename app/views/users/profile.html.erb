@@ -1,7 +1,19 @@
 <table class='profile' summary='Profdile Information'>
-  <tr>
-    <td class ='main'>Hello world</td>
-   
-  </tr>
+    <tr>
+        <td class ='main'>Hello <strong><i><%= @user.username %></strong></i>, here is your profile:<br />
+            <div class='field'>
+                Username: <%= @user.username %><br />
+            </div>
+            <div class='field'>
+                Realname: <%= @user.realname %><br />
+            </div>
+            <div class='field'>
+                Email:    <%= @user.email %><br />
+            </div>
+            <div class='field'>
+                Gravata Image: <%= gravatar_for @user, :size => 30 %>
+            </div>
+        </td>  
+    </tr>
 </table>
 

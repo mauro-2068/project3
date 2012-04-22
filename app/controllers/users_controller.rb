@@ -10,19 +10,19 @@ class UsersController < ApplicationController
     ###
   
     def show
-     @user  = User.find(params[:id])
-      @title = @user.username
-     
-     if signed_in?
-          @bookmarks = @user.bookmarks.paginate(:page => params[:page])
-	  @bookmark = Bookmark.new
-	  @feed_items = current_user.feed.paginate(:page => params[:page])
-      end
+        @user  = User.find(params[:id])
+        @title = @user.username
+        if signed_in?
+             @bookmarks = @user.bookmarks.paginate(:page => params[:page])
+             @bookmark = Bookmark.new
+             @feed_items = current_user.feed.paginate(:page => params[:page])
+         end
     end
     ####    
     def profile
         @user  = current_user
         @title = @user.username
+        
     end
     ###
     def new

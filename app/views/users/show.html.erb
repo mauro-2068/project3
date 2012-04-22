@@ -1,23 +1,22 @@
 <table class='profile' summary='Profile Information'>
-  <tr>
-    <td class ='main'>
-      
-      <% if @user.bookmarks.any? %>
-          <table class="bookmarks" summary="User Bookmarks">
-            <h2 id='h2_header'>My Bookmarks</h2>
-             <%= render @bookmarks %>
-            
-          </table>
-          <%= will_paginate @bookmarks %>
-        <% end %>
-    
-    </td>
-    <td class='sidebar round'>
-      <%= gravatar_for @user, :size => 30 %>
-      <strong> <%= @user.username %> </strong><br />
-      <strong>Email</strong> <%= @user.email %> <br />
-      <strong>URL </strong> <%= link_to user_path(@user), @user %>
-    </td>
-  </tr>
+    <tr>
+        <td class ='main'>
+            <% if @user.bookmarks.any? %>
+                <table class="bookmarks" summary="User Bookmarks">
+                    <h2 id='h2_header'>My Bookmarks</h2>
+                        <%= render @bookmarks %>
+                </table>
+                <%= will_paginate @bookmarks %>
+            <% else %>
+                <h3><i><strong>Time to write some bookmarks </strong></i></h3>
+            <% end %>
+        </td>
+        <td class='sidebar round'>
+            <%= gravatar_for @user, :size => 30 %>
+            <strong> <%= @user.username %> </strong><br />
+            <strong>Email</strong> <%= @user.email %> <br />
+            <strong>URL </strong> <%= link_to user_path(@user), @user %>
+        </td>
+    </tr>
 </table>
 
