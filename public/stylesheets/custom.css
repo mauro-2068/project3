@@ -132,6 +132,8 @@ ul.users li	{list-style :none; }
 .sidebar img.gravatar {margin: .5px;
 			
 }
-#h2_header	{text-align:center; font-style:	italic;
-		color: darkblue;}
+#h2_header			{text-align:center; font-style:	italic;
+				color: darkblue;
+}
+div.content			{}
 

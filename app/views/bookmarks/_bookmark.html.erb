@@ -1,17 +1,21 @@
- <tr>
-   <td class="bookmark">
-        <span class="content"><%= bookmark.url %></span>
-      <span class="content"><%= bookmark.name %></span>
-      <span class="timestamp">
-         Posted <%= time_ago_in_words(bookmark.created_at) %> ago.
-      </span>
-   </td>
-   <% user = bookmark.user rescue User.find(bookmark.user_id)%>
-   <% if current_user?(user) %>
-      <td>
-          <%= link_to "delete", bookmark, :method => :delete,
-                                           :confirmation => "You sure",
-                                           :title => bookmark.name %>
-      </td>
-   <% end %>
- </tr>
+<tr>
+    <td class="bookmark">
+        <div class="content">
+            URL : <a href="<%= bookmark.url %>" target=_blank ><%= bookmark.url %></a>
+        </div>
+        <div class="content">
+            Name: <%= bookmark.name %>
+        </div>
+        <span class="timestamp">
+           Posted <strong><i><%= time_ago_in_words(bookmark.created_at) %></i></strong> ago.
+        </span>
+    </td>
+        <% user = bookmark.user rescue User.find(bookmark.user_id)%>
+        <% if current_user?(user) %>
+    <td>
+            <%= link_to "delete", bookmark, :method => :delete,
+                                                        :confirmation => "You sure",
+                                                        :title => bookmark.name %>
+    </td>
+        <% end %>
+</tr>
