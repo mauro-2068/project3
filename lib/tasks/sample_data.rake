@@ -10,6 +10,7 @@ namespace :db do
                              :password => "foobars",
                              :password_confirmation => "foobars")
         admin.toggle!(:admin)    
+        
         99.times do |n|
             username = Faker::Name.name
             realname = Faker::Name.name
@@ -21,5 +22,16 @@ namespace :db do
                          :password => password,
                          :password_confirmation => password)
         end
-    end
+        
+        User.all(:limit => 6).each do |user|
+            50.times do
+                dName   = Faker::Internet.domain_name
+                dSuffix = Faker::Internet.domain_suffix
+                dWord   = Faker::Internet.domain_word
+                url     = "http://"+ dName +"_" + dWord + "." + dSuffix 
+                name = Faker::Name.name
+                user.bookmarks.create!(:url => url, :name => name)
+            end
+        end
+     end
 end

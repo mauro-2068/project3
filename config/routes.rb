@@ -24,7 +24,7 @@ Project3::Application.routes.draw do
     match '/home',          :to => 'pages#home'
      
     #-----  Bookmarks routes ----------------#
-    match '/show', :to => 'bookmarks#show'
-    match '/index', :to => 'bookmarks#index'
-
+    match '/show',          :to => 'bookmarks#show'
+    match '/index',         :to => 'bookmarks#index'
+  
 end

@@ -14,8 +14,9 @@
         <td class='sidebar round'>
             <%= gravatar_for @user, :size => 30 %>
             <strong> <%= @user.username %> </strong><br />
-            <strong>Email</strong> <%= @user.email %> <br />
-            <strong>URL </strong> <%= link_to user_path(@user), @user %>
+            <strong>Email:</strong><br /> <%= @user.email %> <br />
+            <strong>URL: </strong><br /> <%= link_to user_path(@user), @user %><br />
+            <strong>Bookmark(s)</strong> <%= @user.bookmarks.count %>
         </td>
     </tr>
 </table>
