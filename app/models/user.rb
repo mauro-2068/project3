@@ -14,7 +14,7 @@
 #
 
 class User < ActiveRecord::Base
-    has_many :bookmarks
+    has_many :bookmarks, :dependent => :destroy
     
       attr_accessor :password
   attr_accessible :username, :realname, :email, :password , :password_confirmation

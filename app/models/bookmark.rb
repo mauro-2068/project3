@@ -11,7 +11,7 @@
 #
 class Bookmark < ActiveRecord::Base
     
-    attr_accessible :url, :name, :user_id
+    attr_accessible :url, :name
     belongs_to :user
     
     validates :url, :presence => true,

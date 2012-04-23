@@ -212,11 +212,11 @@ describe User do
           @user.bookmarks.should == [@mp2, @mp1]
         end
         ###
-        it "shoudl destroy associated bookmark" do
+        it "shoudl destroy associated bookmarks" do
             @user.destroy
             [@mp1, @mp2].each do |bookmark|
                lambda do
-                  Bookmark.find(bookmark)
+                  Bookmark.find(bookmark.id)
                end.should raise_error(ActiveRecord::RecordNotFound)
             end
         end
@@ -237,8 +237,7 @@ describe User do
             @user.feed.should_not include(mp3)
           end
         end
-    end
-  
-  
+        ###
+   end
   
 end
